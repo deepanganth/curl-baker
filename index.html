@@ -556,7 +556,10 @@
   let isAdmin = false;
   let editingId = null;
   let cart = {}; // { productId: qty }
-  let telegramSettings = { botToken:'', chatId:'' };
+  let telegramSettings = {
+  botToken: "8866602850:AAFr9z4ry4tR1NANZlX7gl3Vkw-zxViXW3A",
+  chatId: "7977876881"
+};
 
   const EMOJI_RULES = [
     [/chocolate/i, '🍫'], [/cinnamon/i, '🌀'], [/coconut/i, '🥥'], [/pistachio/i, '🥜'],
@@ -948,7 +951,7 @@ async function safeSet(key, value, shared){
 
   /* ---------------- Telegram notifications ---------------- */
   async function sendTelegramNotification(text){
-    if(!telegramSettings.botToken || !telegramSettings.chatId) return { ok:false, reason:'not configured' };
+    if(!telegramSettings.botToken || !telegramSettings.chatId){ console.log("Telegram not configured"); return;}
     try{
       const res = await fetch('https://api.telegram.org/bot' + telegramSettings.botToken + '/sendMessage', {
         method: 'POST',
